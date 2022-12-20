@@ -13,7 +13,7 @@ create table mentors
     first_name varchar(40) not null,
     last_name  varchar(50),
     team_name  varchar(100),
-    email      varchar(100) unique check ( regexp_match(email, '^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$') notnull)
+    email      varchar(100) unique check ( regexp_match(email, '^[A-Za-z]+[A-Za-z0-9._]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$') notnull)
 );
 
 -- Создание таблицы студентов
@@ -24,7 +24,7 @@ create table students
     id         serial primary key,
     first_name varchar(40) not null,
     last_name  varchar(50),
-    email      varchar(100) unique check ( regexp_match(email, '^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$') notnull),
+    email      varchar(100) unique check ( regexp_match(email, '^[A-Za-z]+[A-Za-z0-9._]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$') notnull),
     cv_link    varchar(100) unique
 );
 
@@ -54,7 +54,6 @@ create table solutions
 );
 
 -- Создание таблицы проектов
-
 -- drop table if exists projects;
 create table projects
 (
