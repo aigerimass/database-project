@@ -80,4 +80,51 @@ from students inner join solutions s on students.id = s.student_id
     inner join tests t on s.test_id = t.id
     inner join projects p on t.id = p.test_id
 where status = 'ACCEPTED'
-group by student_id, first_name, last_name
+group by student_id, first_name, last_name;
+
+
+-- В результате запроса получим
+-- студентом-фуллтаймеров (id, имя, фамилия)
+-- и имена и фамилии их менторов, перечисленные через запятую
+select student_id,
+       students.first_name,
+       students.last_name,
+       string_agg(m.first_name || ' ' || m.last_name, ', ')
+from students inner join project_interns pi on students.id = pi.student_id
+    inner join projects p on pi.project_id = p.id
+    inner join mentors m on m.id = p.mentor_id
+group by student_id, students.first_name, students.last_name
+having sum(hours_per_week) >= 40;
+
+-- В результате запроса найдем пересечение в версионной таблице solutions
+
+insert into solutions(test_id, student_id, solution_link, status)
+values (1, 1, 'solution.com/1', 'ACCEPTED');
+-- создадим пересечение с первой версией решения
+update solutions
+set valid_to = now()
+where test_id = 1 and student_id = 1 and
+      valid_from = (select valid_from
+                    from solutions
+                    where test_id = 1 and student_id = 1
+                    order by valid_from
+                    limit 1);
+
+-- пересечение в версионной таблице solutions,
+-- номер теста, номер студента,
+-- ранний временной отрезок, статус решения в нем
+-- поздний временной отрезок, статус решения в нем
+select s1.test_id,
+       s1.student_id,
+       s1.valid_from as prev_valid_from,
+       s1.valid_to as prev_valid_to,
+       s1.status as prev_status,
+       s2.valid_from as valid_from,
+       s2.valid_to as valid_to,
+       s2.status as status
+from solutions s2
+inner join solutions s1 on s1.student_id = s2.student_id
+    and s1.test_id = s2.test_id
+    and s2.valid_from between s1.valid_from and s1.valid_to
+    and s2.valid_to <> s1.valid_to;
+
