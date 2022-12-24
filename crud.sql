@@ -68,3 +68,24 @@ update projects
 set mentor_id = 1
 where id = 4;
 
+-- добавим еще 7 новых студентов
+insert into students(first_name, last_name, email, cv_link)
+values ('Алина', 'Ааа', 'alalal@sm.ru', 'cv.com/1'),
+       ('Анна', 'Лапла', null, 'cv.com/1we'),
+       ('Василий', 'Теркин', 'alalaewal@sm.ru', 'cv.com/1r23'),
+       ('Михаил', 'Кастеев', 'ala324lal@sm.ru', 'cv.com/1d2r3'),
+       ('Саша', 'Стрелков', 'dasalalwer23al@sm.ru', 'cv.com/1r2r'),
+       ('Игорь', 'Горь', 'fwealw32alal@sm.ru', 'cv.com/12r4r'),
+       ('Егор', 'Горд', 'sfalalwr3al@sm.ru', 'cv.com/123rx'),
+       ('Алина', 'Малиновская', 'wfealala2rwefl@sm.ru', 'cv.com/1fsw');
+
+-- 7 новых студентов успешно решили 1 задание, добавим их решения в базу
+insert into solutions(test_id, student_id, solution_link, status)
+select
+    1, students.id, 'solution.com/task' || 1 || '/'|| students.id, 'ACCEPTED'
+from students
+order by students.id desc
+limit 8;
+
+
+

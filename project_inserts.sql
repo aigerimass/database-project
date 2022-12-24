@@ -3,16 +3,16 @@
 set search_path = internships, public;
 
 insert into mentors(first_name, last_name, team_name, email)
-values  ('Дмитрий', 'Васильев', 'Поисковая система', 'davasilev_7@mail.ru'),
-        ('Дарья', 'Кайдалова', 'Поисковая система', 'dakaydalova@mail.ru'),
-        ('Кирилл', 'Маковеев', 'Премиум подписка', 'komakoveev@mail.ru'),
-        ('Андрей', 'Серов', 'Премиум подписка', 'aaserov@mail.ru'),
-        ('Денис', 'Тарасов', 'Корпоративная подписка', 'dtarasov@mail.ru'),
-        ('Василий', 'Белов', 'Внутренние инструменты', 'vvkolubelov@mail.ru'),
-        ('Семен', 'Кудашкин', 'Бизнес отдел', 'sakudashkina@mail.ru');
+values ('Дмитрий', 'Васильев', 'Поисковая система', 'davasilev_7@mail.ru'),
+       ('Дарья', 'Кайдалова', 'Поисковая система', 'dakaydalova@mail.ru'),
+       ('Кирилл', 'Маковеев', 'Премиум подписка', 'komakoveev@mail.ru'),
+       ('Андрей', 'Серов', 'Премиум подписка', 'aaserov@mail.ru'),
+       ('Денис', 'Тарасов', 'Корпоративная подписка', 'dtarasov@mail.ru'),
+       ('Василий', 'Белов', 'Внутренние инструменты', 'vvkolubelov@mail.ru'),
+       ('Семен', 'Кудашкин', 'Бизнес отдел', 'sakudashkina@mail.ru');
 
 insert into students(first_name, last_name, cv_link, email)
-values ('Василий', 'Ефимов','https://jacksonpollock.org/', 'vaefimov@edu.hse.ru'),
+values ('Василий', 'Ефимов', 'https://jacksonpollock.org/', 'vaefimov@edu.hse.ru'),
        ('Дмитрий', 'Жуков', 'http://tunnelsnakes.com/', 'dazhukov_2@edu.hse.ru'),
        ('Елена', 'Крымова', 'https://a4shop.by/', 'edkrymova@edu.hse.ru'),
        ('Елена', 'Римша', 'http://www.trashloop.com/', 'enrimsha@edu.hse.ru'),
@@ -47,29 +47,36 @@ insert into project_interns(student_id, project_id, work_link)
 values (1, 1, 'example.com/1'),
        (2, 2, 'example.com/2'),
        (3, 3, 'example.com/23'),
-       (4, 4, 'example.com/2343'),
+       (4, 4, 'example.com/23'),
        (5, 5, 'example.com/42'),
        (6, 6, 'example.com/25'),
        (7, 7, 'example.com/425'),
-       (8, 8, 'example.com/23443'),
-       (9, 9, 'example.com/21324'),
+       (8, 8, 'example.com/233'),
+       (9, 9, 'example.com/21'),
        (10, 1, 'example.com/2342');
 
+-- добавим принятые решения
+insert into solutions(test_id, student_id, solution_link, status)
+values (4, 10, 'solutions.com/1', 'ACCEPTED'),
+       (5, 9, 'solutions.com/123', 'ACCEPTED'),
+       (3, 8, 'solutions.com/13423', 'ACCEPTED'),
+       (5, 6, 'solutions.com/1234', 'ACCEPTED'),
+       (6, 7, 'solutions.com/1q2341', 'ACCEPTED'),
+       (6, 4, 'solutions.com/1234', 'ACCEPTED'),
+       (5, 3, 'solutions.com/114', 'ACCEPTED'),
+       (4, 8, 'solutions.com/156', 'ACCEPTED'),
+       (1, 4, 'solutions.com/145734', 'ACCEPTED'),
+       (1, 5, 'solutions.com/124', 'ACCEPTED'),
+       (1, 7, 'solutions.com/1df', 'ACCEPTED');
+
+-- добавим новые решения
 
 insert into solutions(test_id, student_id, solution_link)
-values (1, 1, 'solutions.com/1'),
-       (1, 2, 'solutions.com/3434'),
-       (1, 3, 'solutions.com/21'),
-       (2, 1, 'solutions.com/dsf1'),
-       (2, 2, 'solutions.com/134'),
-       (2, 4, 'solutions.com/ewr1'),
-       (2, 5, 'solutions.com/1rwer'),
-       (3, 11, 'solutions.com/4231'),
-       (4, 10, 'solutions.com/32521'),
-       (5, 9, 'solutions.com/23421'),
-       (6, 8, 'solutions.com/321'),
-       (5, 6, 'solutions.com/3241'),
-       (6, 7, 'solutions.com/erwe1'),
-       (6, 4, 'solutions.com/25d1'),
-       (5, 3, 'solutions.com/34x1'),
-       (4, 8, 'solutions.com/3241');
+values (1, 1, 'solutions.com/143'),
+       (1, 2, 'solutions.com/1x43'),
+       (1, 3, 'solutions.com/1x3xtx'),
+       (2, 1, 'solutions.com/xgx31'),
+       (2, 2, 'solutions.com/14gx'),
+       (2, 4, 'solutions.com/x5t1'),
+       (2, 5, 'solutions.com/1x52'),
+       (3, 11, 'solutions.com/1x255');
